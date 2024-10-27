@@ -9,7 +9,7 @@
 """
 
 commands = ['file', 'info', 'words', 'search', 'sum', 'avg', 'help', 'exit']
-additional_commands = ['clear']
+additional_commands = ['clear', 'today']
 fichier = 'None' #None == str pour éviter des erreurs (ex.: command 'info' avant spécification du fichier)
 liste_of_words = [] #search avant words, donc on initialise une liste vide pour éviter des erreurs
 running = True
@@ -141,11 +141,30 @@ def search(word, liste):
 def exit():
     return False #On va atribuer cete valeur à la variable running
 
+#--------------------
+#Additional commands
+#--------------------
 def clear():
     print('\n' * 25)
 
-#On va initialiser notre boucle
+
+from datetime import datetime
+
+def today_date():
+    # Get today's date and format it as a string
+    return datetime.today().strftime('%d/%m/%Y')
+
+def spent_time(value):
+    #print(type(value))
+    return f"User report: you spent {value}"
+
+
+
+#--------------------
+#Boucle while
+#--------------------
 print(f"Welcome to your personalized tool!")
+start_time = datetime.now()
 while running:
     command = input('> ')
     command = command.strip()
@@ -204,10 +223,16 @@ while running:
 
 
     elif parameters[0] == 'exit':
+        end_time = datetime.now()
+        total_time = end_time - start_time
+        print(spent_time(total_time))
         running = exit()
 
     elif parameters[0] == 'clear':
         clear()
+
+    elif parameters[0] == 'today':
+        print(today_date())
 
     else:
         print("Please enter a command")
