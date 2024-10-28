@@ -85,11 +85,48 @@ def test_avg():
 
 test_avg()
 
-def test_exit():
-    assert exit() == False
-    assert exit() != True
+
+def convert_to_float(element):
+    """Cette fonction convertie un string en float
+    @pre:
+        - element est un string
+    @post
+        - return float(element)
+        - print error si ce n'est pas possible de faire
+        la conversion
+    """
+    if type(element) != str:
+        return False
+
+    try:
+        element = float(element)
+        return element
+    except ValueError:
+        print(f"Impossible to convert '{element}' to float")
+
+def test_convert_to_float():
+
+    #Type(element) != str
+    assert convert_to_float(12) == False
+    assert convert_to_float(4.0) == False
+    assert convert_to_float(1.9) == False
+    assert convert_to_float(37) == False
+    assert convert_to_float([1, 2, 3]) == False
+    assert convert_to_float([1.0, 2.0, 3.0]) == False
+    assert convert_to_float(['a', 'b', 'c']) == False
+
+    #True conditions
+    assert convert_to_float('4') == 4.0
+    assert convert_to_float('4.2') == 4.2
+    assert convert_to_float('-12') == -12.0
+    assert convert_to_float('-483.75654') == -483.75654
+
     print('Tous les tests ont réussi')
 
-test_exit()
+test_convert_to_float()
+
+
+
+
 
 
