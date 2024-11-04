@@ -5,7 +5,7 @@
 #Liste pour stocker les commandes que l'utilisateur aura acces
 commands = ['file', 'info', 'words', 'search', 'sum', 'avg', 'help', 'exit']
 #Commandes supplémentaires
-additional_commands = ['clear', 'today']
+additional_commands = ['clear', 'today', 'joke', 'python', 'pip']
 
 #None est un str car si l'utilisateur ne spécifie pas un nom d'un fichier, le code ne s'arretera pas
 fichier = 'None'
@@ -223,6 +223,34 @@ def spent_time(value):
     # été en cours d'execution
     return f"User report: you spent {value}"
 
+import random as r
+
+# Liste de blagues en français
+jokes = [
+    "Pourquoi les plongeurs plongent-ils toujours en arrière et jamais en avant ? Parce que sinon ils tombent dans le bateau.",
+    "Quel est le comble pour un électricien ? De ne pas être au courant.",
+    "Que dit un zéro à un huit ? Sympa ta ceinture !",
+    "Pourquoi les poissons détestent l'ordinateur ? Parce qu'ils ont peur du net.",
+    "Qu’est-ce qui est jaune et qui attend ? Jonathan.",
+    "Pourquoi les canards sont-ils toujours à l'heure ? Parce qu'ils sont dans l'étang.",
+    "Comment appelle-t-on un chat tout terrain ? Un 4x4 pattes.",
+    "Pourquoi les vampires ne peuvent-ils pas bronzer ? Parce qu'ils craignent les coups de soleil.",
+    "Que fait une fraise sur un cheval ? Tagada tagada tagada.",
+    "Pourquoi les abeilles ne parlent-elles jamais ? Parce qu'elles bzzz !"
+]
+
+def tell_joke():
+    index = r.randint(0, len(jokes)- 1)
+    return jokes[index]
+
+def show_python_version():
+    print(f"Python 3.11.5")
+
+def show_pip_version():
+    print(f"pip 24.0 from /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/pip (python 3.11)")
+
+
+
 #--------------------
 #Boucle while
 #--------------------
@@ -283,7 +311,10 @@ while running: # <=> while True
             print(avg(numbers))
 
     elif parameters[0] == 'help':
-        help()
+        if len(parameters) != 1:
+            print("Please enter a valid command")
+        else:
+            help()
 
 
     elif parameters[0] == 'exit':
@@ -294,10 +325,46 @@ while running: # <=> while True
 
     #Commandes supplémentaires
     elif parameters[0] == 'clear':
-        clear()
+        if len(parameters) != 1:
+            print("Please enter a valid command")
+        else:
+            clear()
 
     elif parameters[0] == 'today':
-        print(today_date())
+        if len(parameters) != 1:
+            print("Please enter a valid command")
+        else:
+            print(today_date())
+
+    elif parameters[0] == 'joke':
+        if len(parameters) != 1:
+            print("Please enter a valid command")
+        else:
+            print(tell_joke())
+
+
+    elif parameters[0] == 'python':
+        if len(parameters) == 1:
+            print("Please enter a valid command")
+        elif len(parameters) == 2:
+            if parameters[1] == '--version':
+                show_python_version()
+            else:
+                print("Please enter a valid command")
+        elif len(parameters) >= 3:
+            print("Please enter a valid command")
+
+    elif parameters[0] == 'pip':
+        if len(parameters) == 1:
+            print("Please enter a valid command")
+        elif len(parameters) == 2:
+            if parameters[1] == '--version':
+                show_pip_version()
+            else:
+                print("Please enter a valid command")
+        elif len(parameters) >= 3:
+            print("Please enter a valid command")
+
 
     else:
         print("Please enter a command")

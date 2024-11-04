@@ -1,5 +1,4 @@
-Fichier example.txt
 Bruxelles
-Lovain-la-Neuve
+Louvain-la-Neuve
 Sciences Informatiques
-UClouvain
+UCLouvain

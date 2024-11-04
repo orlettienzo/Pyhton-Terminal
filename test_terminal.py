@@ -39,7 +39,9 @@ def test_sum():
 
     print('Tous les tests ont réussi')
 
+print('Test: sum()')
 test_sum()
+print()
 
 def avg(liste):
     if len(liste) < 2:
@@ -83,7 +85,9 @@ def test_avg():
 
     print('Tous les tests ont réussi')
 
+print('Test: avg()')
 test_avg()
+print()
 
 
 def convert_to_float(element):
@@ -123,6 +127,7 @@ def test_convert_to_float():
 
     print('Tous les tests ont réussi')
 
+print('Test: convert_to_float()')
 test_convert_to_float()
 
 
